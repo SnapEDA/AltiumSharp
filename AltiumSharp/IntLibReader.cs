@@ -134,7 +134,14 @@ namespace OriginalCircuit.AltiumSharp
                             });
                             using (PcbLibReader pcbLibReader = new PcbLibReader())
                             {
-                                component.pcbLib = (PcbLib)pcbLibReader.Read(new MemoryStream(decompressedPcbLib));
+                                try
+                                {
+                                    component.pcbLib = (PcbLib)pcbLibReader.Read(new MemoryStream(decompressedPcbLib));
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e);
+                                }
                             }
                         }
                     }
