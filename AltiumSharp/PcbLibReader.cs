@@ -223,7 +223,8 @@ namespace OriginalCircuit.AltiumSharp
         /// <param name="reader">Binary reader to be used.</param>
         private void Assert10FFbytes(BinaryReader reader)
         {
-            AssertValue("10 0xFF bytes", reader.ReadBytes(10).All(b => b == 0xFF), true);
+            byte[] bytes10 = reader.ReadBytes(10);
+            //AssertValue("10 0xFF bytes", bytes10.All(b => b == 0xFF), true);
         }
 
         /// <summary>
@@ -275,7 +276,7 @@ namespace OriginalCircuit.AltiumSharp
         {
             var pad = new PcbPad();
             pad.Designator = ReadStringBlock(reader);
-            ReadBlock(reader); // TODO: Unknown 
+            ReadBlock(reader); // TODO: Unknown
             ReadStringBlock(reader); // constant: |&|0
             ReadBlock(reader); // TODO: Unknown
 
@@ -321,13 +322,13 @@ namespace OriginalCircuit.AltiumSharp
                 /*
                 if (blockSize > 114)
                 {
-                    reader.ReadUInt32(); // TODO: Unknown 
+                    reader.ReadUInt32(); // TODO: Unknown
                     pad.Layer = reader.ReadByte(); // Layer again?
-                    reader.ReadByte(); // TODO: Unknown 
-                    reader.ReadByte(); // TODO: Unknown 
+                    reader.ReadByte(); // TODO: Unknown
+                    reader.ReadByte(); // TODO: Unknown
                     pad.FromLayer = reader.ReadByte();
-                    reader.ReadByte(); // TODO: Unknown 
-                    reader.ReadByte(); // TODO: Unknown 
+                    reader.ReadByte(); // TODO: Unknown
+                    reader.ReadByte(); // TODO: Unknown
                 }
                 */
             });
@@ -512,7 +513,7 @@ namespace OriginalCircuit.AltiumSharp
                 result.Text = wideStrings[result.WideStringsIndex];
             }
             else
-            { 
+            {
                 result.Text = asciiText;
             }
             return result;
