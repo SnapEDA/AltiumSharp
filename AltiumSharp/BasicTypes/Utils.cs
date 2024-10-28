@@ -13,7 +13,7 @@ namespace OriginalCircuit.AltiumSharp.BasicTypes
 
         public const double InternalUnits = 10000.0;
 
-        public static double MilsToMMs(double mils) => mils * 0.0254;
+        public static double MilsToMMs(double mils) => Math.Round(mils * 0.0254, 3);
 
         public static double MMsToMils(double mms) => mms / 0.0254;
 
